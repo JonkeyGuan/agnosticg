@@ -25,7 +25,7 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           - mkdir -p /opt/sonarqube/data;
-            chmod -R 775 /opt/sonarqube/data;
+            chown -R 999:999 /opt/sonarqube/data;
         volumeMounts:
         - name: sonar-data
           mountPath: /opt/sonarqube/data
