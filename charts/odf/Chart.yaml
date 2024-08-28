@@ -1,5 +1,5 @@
 apiVersion: v2
-name: odf-azure
+name: odf-chart
 description: A Helm chart to deploy ODF resources for Kubernetes
 type: application
 
