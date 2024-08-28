@@ -1,22 +1,22 @@
 gitlab:
   email:
     address: "gitlab@example.com"
-    displayName: "Tyrell Reddy"
+    displayName: "Jonkey Guan"
     replyTo: "noreply@redhat.com"
   smtp:
     enabled: "false"
     domain: "example.com"
-    host: "smtp.gitlab-gitlab.apps.cluster-br9rv.br9rv.sandbox1083.opentlc.com"
+    host: "smtp.gitlab-gitlab.apps.hub.jonkey.cc"
     port: "587"
     user: "gitlab"
     password: "gitlab"
   ssh:
-    host: "ssh.gitlab-gitlab.apps.cluster-br9rv.br9rv.sandbox1083.opentlc.com"
+    host: "ssh.gitlab-gitlab.apps.hub.jonkey.cc"
     port: "22"
   rootPassword: openshift
-  host: gitlab-gitlab.apps.cluster-br9rv.br9rv.sandbox1083.opentlc.com
+  host: gitlab-gitlab.apps.hub.jonkey.cc
   https: "true"
-  rootEmail: "treddy@redhat.com"
+  rootEmail: "zeguan@redhat.com"
   keyBase:
     db: "0123456789"
     otp: "0123456789"
@@ -35,3 +35,6 @@ postgresql:
   dbUser: gitlab
   dbPassword: passw0rd
   dbName: gitlab_production
+
+storage:
+  className: thin-csi

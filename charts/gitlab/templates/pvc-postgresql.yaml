@@ -12,5 +12,5 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: gp3-csi
+  storageClassName: {{ $.Values.storage.className }}
   volumeMode: Filesystem
