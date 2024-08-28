@@ -1,9 +1,7 @@
 argocd:
-  channel: 'stable'
-  startingCSV: openshift-gitops-operator.v1.5.10
+  channel: 'gitops-1.13'
+  startingCSV: openshift-gitops-operator.v1.13.1
   catalogSource:
-    name: redhat-operators-snapshot-argocd
-    image: quay.io/gpte-devops-automation/olm_snapshot_redhat_catalog
-    imageTag: v4.12_2023_02_20
+    name: redhat-operators
   appSync: 3m
   adminPassword: ""

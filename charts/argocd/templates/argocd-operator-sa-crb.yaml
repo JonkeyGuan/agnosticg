@@ -7,7 +7,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: openshift-gitops-operator-sa
-    namespace: openshift-operators
+    namespace: openshift-gitops
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

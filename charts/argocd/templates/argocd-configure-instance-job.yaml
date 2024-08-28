@@ -15,7 +15,7 @@ spec:
             - -c
             - |
               sh /configure-argocd/configure-argocd.sh
-        image: registry.redhat.io/openshift4/ose-cli:v4.7
+        image: registry.redhat.io/openshift4/ose-cli:v4.15
         volumeMounts:
           - mountPath: /configure-argocd
             name: configure-argocd-volume
