@@ -16,7 +16,7 @@ spec:
               cat /tmp/vault-auto-unseal-keys.txt | oc exec -i -n vault vault-0 -c vault "--" sh -c "cat > /vault/data/vault-auto-unseal-keys.txt"
               cat /vault-unseal-config/unseal.sh | oc exec -i -n vault vault-0 -c vault "--" sh -c "cat > /vault/data/unseal.sh"
               oc exec vault-0 --namespace=vault --stdin --tty -- /bin/sh /vault/data/unseal.sh
-        image: registry.redhat.io/openshift4/ose-cli:v4.7
+        image: registry.redhat.io/openshift4/ose-cli:v4.15
         volumeMounts:
           - mountPath: /vault-unseal-config
             name: vault-unseal-config-volume
