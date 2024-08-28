@@ -2,6 +2,7 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: amqstreams
+  namespace: openshift-operators
 spec:
   channel: "{{ $.Values.amqstreams.channel }}"
 {{- if $.Values.amqstreams.startingCSV }}
@@ -10,4 +11,4 @@ spec:
   installPlanApproval: Automatic
   name: amq-streams
   source: "{{ $.Values.amqstreams.catalogSource.name }}"
-  sourceNamespace: openshift-operators
+  sourceNamespace: openshift-marketplace
