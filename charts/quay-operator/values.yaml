@@ -2,9 +2,8 @@
 
 quay:
   namespace: quay-enterprise
-  channel: 'stable-3.8'
-  startingCSV: quay-operator.v3.8.2
+  channel: 'stable-3.12'
+  startingCSV: quay-operator.v3.12.1
   catalogSource:
-    name: redhat-operators-snapshot-quay
-    image: quay.io/gpte-devops-automation/olm_snapshot_redhat_catalog
-    imageTag: v4.12_2023_02_20
+    name: redhat-operators
+

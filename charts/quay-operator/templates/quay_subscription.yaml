@@ -12,4 +12,4 @@ spec:
   installPlanApproval: Automatic
   name: quay-operator
   source: "{{ $.Values.quay.catalogSource.name }}"
-  sourceNamespace: "{{ $.Values.quay.namespace }}"
+  sourceNamespace: openshift-marketplace
