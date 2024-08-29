@@ -15,7 +15,7 @@ spec:
             - -c
             - |
               sh /init-bundle/init_bundle.sh
-        image: registry.redhat.io/openshift4/ose-cli:v4.7
+        image: registry.redhat.io/openshift4/ose-cli:v4.15
         volumeMounts:
           - mountPath: /init-bundle
             name: init-bundle-volume
