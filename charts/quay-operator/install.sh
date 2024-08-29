@@ -1,1 +1,1 @@
-helm install quay . -f values.yaml -n quay-enterprise --create-namespace
+helm install quay-operator . -f values.yaml -n quay-enterprise --create-namespace
