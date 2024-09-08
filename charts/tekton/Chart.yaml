@@ -1,0 +1,5 @@
+apiVersion: v2
+name: openshift-pipelines
+description: Deploys openshift-pipelines
+type: application
+version: 0.0.1
