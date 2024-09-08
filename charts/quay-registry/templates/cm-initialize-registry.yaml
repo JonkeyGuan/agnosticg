@@ -13,12 +13,12 @@ data:
         exit $RESULT
     fi
     ENDPOINT=$(oc get quayregistry quay -n quay-enterprise -o json | jq '.status.registryEndpoint' | sed 's/"//g')
-    STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" $ENDPOINT/api/v1/discovery)
+    STATUS_CODE=$(curl -s -k -o /dev/null -w "%{http_code}" $ENDPOINT/api/v1/discovery)
     while [ $STATUS_CODE -ne 200 ] && [ $STATUS_CODE -ne 403 ]; do
         sleep 5s
         echo $STATUS_CODE
         echo $ENDPOINT
         ENDPOINT=$(oc get quayregistry quay -n quay-enterprise -o json | jq '.status.registryEndpoint' | sed 's/"//g')
-        STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" $ENDPOINT/api/v1/discovery)
+        STATUS_CODE=$(curl -s -k -o /dev/null -w "%{http_code}" $ENDPOINT/api/v1/discovery)
     done
-    curl -X POST $ENDPOINT/api/v1/user/initialize -H "Content-Type: application/json" -d '{"username": "{{ $.Values.quay.registry.username }}", "password": "{{ $.Values.quay.registry.password }}", "email":"quayadmin@opentlc.com","access_token":"true"}'
+    curl -k -X POST $ENDPOINT/api/v1/user/initialize -H "Content-Type: application/json" -d '{"username": "{{ $.Values.quay.registry.username }}", "password": "{{ $.Values.quay.registry.password }}", "email":"quayadmin@opentlc.com","access_token":"true"}'
