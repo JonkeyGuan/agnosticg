@@ -1,8 +1,9 @@
 #Sonarqube Chart Values
 
 sonarqube:
-  image: quay.io/redhat-gpte/sonarqube:7.7
-  adminPassword: admin
+  # image: quay.io/redhat-gpte/sonarqube:7.7
+  image: quay.io/ukhomeofficedigital/sonarqube:v9.9.0
+  adminPassword: openshift
   namespace: sonarqube
 storage:
   className: thin-csi
