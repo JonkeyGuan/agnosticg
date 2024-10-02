@@ -1,7 +1,14 @@
 apiVersion: v2
 name: sonarqube
-description: A Helm chart to deploy Sonarqube resources for Kubernetes
-type: application
-
-version: 0.1.0
-appVersion: 0.0.1
+description: SonarQube is an open sourced code quality scanning tool
+version: 0.1.11
+appVersion: 9.9.1-community
+home: https://github.com/redhat-cop/helm-charts
+keywords:
+- coverage
+- security
+- code
+- quality
+icon: https://www.sonarqube.org/assets/logo-31ad3115b1b4b120f3d1efd63e6b13ac9f1f89437f0cf6881cc4d8b5603a52b4.svg
+maintainers:
+- name: eformat

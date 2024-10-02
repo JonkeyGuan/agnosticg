@@ -1,0 +1,81 @@
+---
+{{- if eq .Values.postgresql.enabled true }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.appName }}
+    deployment: {{ template "postgresql.name" . }}
+  name: {{ template "postgresql.name" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+      deployment: {{ template "postgresql.name" . }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+        deployment: {{ template "postgresql.name" . }}
+    spec:
+      containers:
+        - name: postgresql
+          env:
+            - name: POSTGRESQL_USER
+              valueFrom:
+                secretKeyRef:
+                  key: {{ default "postgresqlUsername" }}
+                  name: {{ template "postgresql.name" . }}
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: {{ default "postgresqlPassword" }}
+                  name: {{ template "postgresql.name" . }}
+            - name: POSTGRESQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  key: {{ default "postgresqlDatabase" }}
+                  name: {{ template "postgresql.name" . }}
+          image: image-registry.openshift-image-registry.svc:5000/openshift/postgresql:{{ .Values.postgresql.image.tag | default "9.6" }}
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: {{ .Values.postgresql.service.port | default "5432" }}
+            timeoutSeconds: 1
+          ports:
+            - containerPort: {{ .Values.postgresql.service.port  | default "5432" }}
+              protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -i
+                - -c
+                - psql -h 127.0.0.1 -U $POSTGRESQL_USER -q -d $POSTGRESQL_DATABASE -c 'SELECT 1'
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          securityContext:
+            capabilities: {}
+            privileged: false
+          terminationMessagePath: /dev/termination-log
+          volumeMounts:
+            - mountPath: /var/lib/pgsql/data
+              name: {{ template "postgresql.name" . }}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: {{ template "postgresql.name" . }}
+          persistentVolumeClaim:
+            claimName: {{ template "postgresql.name" . }}
+{{- end }}
