@@ -193,6 +193,10 @@ spec:
               {{- else }}
               value: "{{ .Values.jvmOpts }}"
               {{- end }}
+              {{- if .Values.jvmCeOpts }}
+            - name: SONAR_CE_JAVAOPTS
+              value: "{{ .Values.jvmCeOpts }}"
+              {{- end }}
             - name: SONAR_JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
