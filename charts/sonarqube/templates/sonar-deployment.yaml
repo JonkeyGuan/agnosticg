@@ -195,7 +195,11 @@ spec:
               {{- end }}
               {{- if .Values.jvmCeOpts }}
             - name: SONAR_CE_JAVAOPTS
+              {{- if .Values.caCerts }}
+              value: {{ printf "-Djavax.net.ssl.trustStore=%s/certs/cacerts %s" .Values.sonarqubeFolder .Values.jvmCeOpts | trim | quote }}
+              {{- else }}
               value: "{{ .Values.jvmCeOpts }}"
+              {{- end }}
               {{- end }}
             - name: SONAR_JDBC_USERNAME
               valueFrom:
