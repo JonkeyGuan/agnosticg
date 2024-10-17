@@ -36,5 +36,3 @@ postgresql:
   dbPassword: passw0rd
   dbName: gitlab_production
 
-storage:
-  className: thin-csi
